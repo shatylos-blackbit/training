@@ -16,13 +16,14 @@ services:
         volumes:
             - ".:/var/www/html"
         ports:
-            - "8082:80"
+            - "80"
         depends_on:
             - sqlite3
         networks:
             - symfony-training
         environment:
             - PATH=/root/.symfony5/bin:$PATH
+            - VIRTUAL_HOST=.training.docker
 
 networks:
     symfony-training:
