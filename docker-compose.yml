@@ -1,0 +1,28 @@
+version: '3.9'
+services:
+    sqlite3:
+        image: nouchka/sqlite3:latest
+        stdin_open: true
+        tty: true
+        volumes:
+            - ./db/:/root/db/
+        networks:
+            - symfony-training
+    php:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: symfony-training_php
+        volumes:
+            - ".:/var/www/html"
+        ports:
+            - "8082:80"
+        depends_on:
+            - sqlite3
+        networks:
+            - symfony-training
+        environment:
+            - PATH=/root/.symfony5/bin:$PATH
+
+networks:
+    symfony-training:
