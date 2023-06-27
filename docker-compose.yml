@@ -11,7 +11,7 @@ services:
     php:
         build:
             context: .
-            dockerfile: Dockerfile
+            dockerfile: docker/Dockerfile
         container_name: symfony-training_php
         volumes:
             - ".:/var/www/html"
